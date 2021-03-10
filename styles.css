@@ -4,7 +4,7 @@ header {
     justify-content: center;
     flex-direction: row;
     position: absolute;
-    right: 20px;
+    right: 10px;
     top: 10px;
     font-size: 13px;
 }
@@ -61,12 +61,12 @@ body {
 #SearchBar {
     height: 40px;
     font-size: 18px;
-    width: 75vw; /*turn into media query*/
-    border-radius: 25px 25px 25px 25px;
+    width: 60vw;
+    border-radius: 5px 5px 5px 5px;
 }
 
 #SearchBar:hover {
-    box-shadow: 0 3px 5px lightgrey;
+    box-shadow: 0 0 3px 1px lightgrey;
 }
 
 .Buttons {
@@ -78,22 +78,20 @@ body {
     justify-content: center;
 }
 
-#button1 {
-    margin-right: 10px;
+.ButtonItems {
+    margin: 10px;
     height: 30px;
+    border: none;
+    background-color: #f8f9fa;
+    padding-top: 10px;
+    padding-bottom: 25px;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-align: center;
 }
 
-#button2 {
-    margin-left: 10px;
-    height: 30px;
-}
-
-#button1:hover {
-    box-shadow: 0 1px 1px grey;
-}
-
-#button2:hover {
-    box-shadow: 0 1px 1px grey;
+.ButtonItems:hover {
+    box-shadow: 0 0 1px 1px lightgrey;
 }
 
 a {
