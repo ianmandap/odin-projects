@@ -1,7 +1,19 @@
-.Header {
+header {
+    height: 48px;
     display: flex;
     flex-direction: row;
-    float: right;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+.HeaderItems {
+    height: 24px;
+    padding: 5px;
+}
+
+.HeaderItems:hover {
+    text-decoration: underline;
 }
 
 body {
@@ -10,12 +22,19 @@ body {
 }
 
 .Logo {
+    position: relative;
+    top: 48px;
+    height: 92px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .Search {
+    height: 50px;
+    padding: 10px;
+    position: relative;
+    top: 42px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -25,7 +44,7 @@ body {
     height: 40px;
     font-size: 18px;
     width: 75vw; /*turn into media query*/
-    border-radius: 0px;
+    border-radius: 25px 25px 25px 25px;
 }
 
 #SearchBar:hover {
@@ -33,6 +52,9 @@ body {
 }
 
 .Buttons {
+    height: 40px;
+    position: relative;
+    top: 38px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -56,12 +78,38 @@ body {
     box-shadow: 0 1px 1px grey;
 }
 
-.footer {
+a {
+    text-decoration: inherit;
+    color: inherit;
+}
+
+.Footer {
     display: flex;
-    align-items: center;
-    align-content: space-around;
-    height: 20px;
-    width: 100%;
+    background-color: #f2f2f2;
+    width: 99%;
+    margin-bottom: 1.5vh;
+    border: 5vh;
     position: absolute;
     bottom: 0px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.FooterLeft {
+    display: flex;
+}
+
+.FooterRight {
+    display: flex;
+}
+
+.FooterItems {
+    color: #70757a;
+    padding: 10px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.FooterItems:hover {
+    text-decoration: underline;
 }
