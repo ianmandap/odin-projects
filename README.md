@@ -1,4 +1,4 @@
-# odin-google-homepage
-Mini-project for The Odin Project. Create and mimic the google webpage using HTML and CSS.
+# odin-projects
+My portfolio of completed projects from The Odin Project
 
 Live preview: https://theianmilan.github.io/odin-google-homepage/
