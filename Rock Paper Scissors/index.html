@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
 
     <!-- Google Font-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -12,103 +13,43 @@
 </head>
 
 <body>
-    <script>
-        // Establish global variables
-        let playerWins = 0;
-        let playerLoses = 0;
-        let computerWins = 0;
-        let computerLoses = 0;
-        let gamesPlayed = 0;
-        let bestOf = 3;
-        let gameStatus = 0;
+    <div id="container">
+        <div class="top">
+            <div id="title">Rock🗿, Paper📃, Scissors✂️</div>
+        </div>
+        
+        <div class="center-left">
+            <div class="info-title">Player</div>
+            <div class="stats">
+                <div>Wins:<span class="score" id="pw">1</span></div>
+                <div>Losses:<span class="score" id="pl">2</span></div>
+                <div>Games Played:<span class="score" id="pl">2</span></div>
+            </div>
+        </div>
 
+        <div class="center">
+            <div class="win-condition">First to 5 Wins!</div>
+            <div class="simulation"><button class="simulation-icon">🗿</button> vs <button class="simulation-icon">🗿</button></div>
+            <div class="outcome">You Win!</div>
+            <div class="outcome-desc">Scissors is beaten by Rock!</div>
+        </div>
 
-        function computerPlay() {
-            // generates a number from 1 to 3 (inclusive)
-            // 1 (Rock), 2 (Paper), 3 (Scissors)
-            return Math.floor((Math.random()*3)+1);
-        }
+        <div class="center-right">
+            <div class="info-title">Computer</div>
+            <div class="stats">
+                <div>Wins:<span class="score" id="cw">1</span></div>
+                <div>Losses:<span class="score" id="cl">2</span></div>
+            </div>
+        </div>
 
-        function playRound(playerSelection, computerSelection) {
-            // outputs win/lose on a game of rock-paper-scissors
+        <div class="bottom">
+            <button class="choice" title="Rock">🗿</button>
+            <button class="choice" title="Paper">📃</button>
+            <button class="choice" title="Scissors">✂️</button>
+        </div>
+    </div>
 
-            // Check first if draw
-            if (playerSelection == computerSelection) {
-                gamesPlayed += 1;
-                return "Draw! Choose again.";
-            }
-
-            // Check outcome
-            if (playerSelection == 1 && computerSelection == 2) {
-                playerLoses += 1;
-                computerWins += 1;
-                gamesPlayed += 1;
-                return "You Lose! Rock is beaten by Paper"
-            }
-
-            else if (playerSelection == 1 && computerSelection == 3) {
-                playerWins += 1;
-                computerLoses += 1;
-                gamesPlayed += 1;
-                return "You Win! Rock beats Scissors"
-            }
-
-            else if (playerSelection == 2 && computerSelection == 1) {
-                playerWins += 1;
-                computerLoses += 1;
-                gamesPlayed += 1;
-                return "You Win! Paper beats Rock"
-            }
-
-            else if (playerSelection == 2 && computerSelection == 3) {
-                playerLoses += 1;
-                computerWins += 1;
-                gamesPlayed += 1;
-                return "You Lose! Paper is beaten by Scissors"
-            }
-
-            else if (playerSelection == 3 && computerSelection == 1) {
-                playerLoses += 1;
-                computerWins += 1;
-                gamesPlayed += 1;
-                return "You Lose! Scissors is beaten by Rock"
-            }
-
-            else if (playerSelection == 3 && computerSelection == 2) {
-                playerWins += 1;
-                computerLoses += 1;
-                gamesPlayed += 1;
-                return "You Win! Scissors beats Paper"
-            }
-
-            else {
-                return "Please enter a valid number."
-            }
-        }
-
-        function game() {
-            // Plays a game and checks if there is a winner
-            const playerSelection = prompt("Choose. 1: Rock, 2: Paper, 3: Scissors");
-            const computerSelection = computerPlay();
-            console.log(playRound(playerSelection, computerSelection));
-
-            if (playerWins == bestOf) {
-                console.log("You are the overall Winner!");
-                gameStatus = 1;
-            }
-
-            if (computerWins == bestOf) {
-                console.log("Computer is the overall Winner!");
-                gameStatus = 1;
-            }
-        }
-
-        while (gameStatus == 0) {
-            game();
-        }
-
-    </script>
-
+    <script src="script.js"></script>
 
 </body>
 </html>
