@@ -125,3 +125,8 @@ body, #container {
         transform: scale(1.2);
         border: 3px solid red;
     }
+
+.hide {
+    visibility: hidden;
+    height: 0;
+}
