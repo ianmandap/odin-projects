@@ -11,7 +11,7 @@
 html {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     background-color: #f2f0e6;
-    font-size: 50px;
+    font-size: 47px;
     padding: 0;
     margin: 0;
     height: 100%;
@@ -24,39 +24,45 @@ body, #container {
 }
 
 #container {
-    display: flex;
-    flex-flow: row wrap;
+    display: grid;
+    grid-template-areas: 
+        'top top top top top'
+        'left center center center right'
+        'left center center center right'
+        'bot bot bot bot bot';
+    grid-template-rows:  1fr 3.5fr 3.5fr 2fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 0;
     text-align: center;
 }
 
 /* Sections */
 .top {
-    height: 10%;
-    width: 100%;
+    grid-area: top;
     font-weight: bold;
 }
 
 .center-left, .center-right {
-    height: 70%;
-    width: 20%;
     font-size: 0.75rem;
     box-shadow: 0 5px 10px darkslategray;
 }
 
 .center-left {
+    grid-area: left;
     border: 5px solid red;
 }
 
 .center-right {
+    grid-area: right;
     border: 5px solid blue;
 }
 
     .stats {
         font-size: 0.5rem;
         text-align: left;
-        padding-left: 1vw;
+        padding-left: 0.5vw;
         padding-top: 2vh;
-        padding-right: 1vw;
+        padding-right: 0.5vw;
         display: table;
     }
 
@@ -66,8 +72,7 @@ body, #container {
     }
 
 .center {
-    height: 70%;
-    width: 60%;
+    grid-area: center;
 }
 
     .win-condition {
@@ -109,8 +114,7 @@ body, #container {
     }
 
 .bottom {
-    height: 20%;
-    width: 100%;
+    grid-area: bot;
 }
 
     .choice {
@@ -129,4 +133,38 @@ body, #container {
 .hide {
     visibility: hidden;
     height: 0;
+}
+
+@media only screen and (max-width:1000px) {
+    html {
+        font-size: 40px;
+    }
+}
+
+@media only screen and (max-width:850px) {
+    html {
+        font-size: 35px;
+    }
+    
+    #container {
+        grid-template-areas: 
+        'top top top top top'
+        'left left center center center'
+        'right right center center center'
+        '. . bot bot bot';
+        grid-template-rows:  1fr 3.5fr 3.5fr 2fr;
+        grid-template-columns: 0.5fr 0.5fr 1fr 1fr 1fr;
+    }
+}
+
+@media only screen and (max-width:650px) {
+    #container {
+        grid-template-areas: 
+        'top top'
+        'center center'
+        'bot bot'
+        'left right';
+        grid-template-rows:  0.5fr 3.5fr 1fr 0.5fr;
+        grid-template-columns: 0.5fr 0.5fr
+    }
 }
