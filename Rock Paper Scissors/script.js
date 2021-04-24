@@ -5,7 +5,6 @@ let computerWins = 0;
 let computerLoses = 0;
 let gamesPlayed = 0;
 let bestOf = 5;
-let gameStatus = 0;
 let outcomeText = "";
 let outcomeDescText = ""; 
 
@@ -21,6 +20,9 @@ const s1 = document.querySelector('#s1');
 const s2 = document.querySelector('#s2');
 const outcome = document.querySelector('.outcome');
 const outcomeDesc = document.querySelector('.outcome-desc');
+
+const centerLeft = document.querySelector('.center-left');
+const centerRight = document.querySelector('.center-right');
 
 // Toggle class upon game
 function toggleClass() {
@@ -130,13 +132,24 @@ function computerPlay() {
 
 function checkWinner() {
     if (playerWins == bestOf) {
-        console.log("You are the overall Winner!");
-        gameStatus = 1;
+        outcome.textContent = "You are the overall Winner!";
+        outcomeDesc.textContent = "";
+        simulation.classList.toggle('hide');
+        for (let i = 0; i < choicesNodeList.length; i++) {
+            choicesNodeList[i].disabled = "true";
+        }
+        centerLeft.style.border = "5px solid gold";
+
     }
 
     if (computerWins == bestOf) {
-        console.log("Computer is the overall Winner!");
-        gameStatus = 1;
+        outcome.textContent = "Computer is the overall Winner!";
+        outcomeDesc.textContent = "";
+        simulation.classList.toggle('hide');
+        for (let i = 0; i < choicesNodeList.length; i++) {
+            choicesNodeList[i].disabled = "true";
+        }
+        centerRight.style.border = "5px solid gold";
     }
 }
 
