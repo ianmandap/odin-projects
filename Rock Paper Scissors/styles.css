@@ -119,7 +119,7 @@ body, #container {
 
     .choice {
         font-size: 1.4rem;
-        margin: 10px 15px 0 15px;
+        margin: 10px 15px 10px 15px;
         padding: 10px;
         border-radius: 25%;
         border: 1px dotted black;
