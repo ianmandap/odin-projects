@@ -9,7 +9,7 @@
   }
 
 :root {
-  --sketch: red;
+  --sketch: rgba(46, 46, 46, 0.8);
   --wheels: azure;
   --wheelShadow: 1px 1px 2px white;
 }
@@ -45,7 +45,15 @@ body, #content-container {
 }
 
   #controls > button {
-    font-size: 25px;
+    font-size: 0.75rem;
+    border-radius: 5%;
+    width: 5rem;
+  }
+
+  #controls > #size-input {
+    font-size: 0.75rem;
+    width: 1.5rem;
+    text-align: center;
   }
 
 #grid-container {
@@ -57,15 +65,12 @@ body, #content-container {
 }
 
   #grid {
-    height: 75vmin;
-    width: 75vmin;
+    height: 80vmin;
+    width: 80vmin;
     display: grid;
-    grid-template-rows: 1fr 1fr;
-    grid-template-columns: 1fr 1fr;
-    border: 3vmin solid var(--sketch);
-    border-bottom: 6vmin solid var(--sketch);;
-    border-radius: 5%;
-    background-color: chartreuse;
+    grid-template-columns: repeat(6,1fr);
+    border: 3px solid var(--sketch);
+    background-color: white;
   }
 
   /* #grid::after {
@@ -96,3 +101,7 @@ body, #content-container {
     border-color: var(--wheels);
     box-shadow: var(--wheelShadow);
   } */
+
+  .grid-item {
+    border: 1px solid var(--sketch);
+  }
