@@ -47,6 +47,7 @@ body, #content-container {
   display: flex;
   justify-content:center;
   align-items: center;
+  padding-top: 20px;
 }
 
   #controls-top {
@@ -99,20 +100,52 @@ body, #content-container {
 
 /* @media screen and (min-height:) */
 
-@media screen and (max-width: 680px) {
+@media screen and (max-width: 730px) {
   #grid {
-    height: 86vmin;
-    width: 86vmin;
+    height: 75vmin;
+    width: 75vmin;
   }
 
   #controls-top button, #controls-bottom button,   #controls #size-input {
     font-size: 0.5rem;
   }
+
+  #controls {
+    height: 15%;
+  }
+
+  #grid-container {
+    height: 77.5%;
+  }
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 650px) {
   #grid {
-    height: 95vmin;
-    width: 95vmin;
+    height: 80vmin;
+    width: 80vmin;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  #grid {
+    height: 93vmin;
+    width: 93vmin;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  #controls {
+    height: 22.5%;
+  }
+
+  #grid-container {
+    height: 70%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  #grid {
+    height: 96vmin;
+    width: 96vmin;
   }
 }
