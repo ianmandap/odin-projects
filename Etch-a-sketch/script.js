@@ -12,6 +12,7 @@ const blackBtn = document.querySelector('#black');
 const whiteBtn = document.querySelector('#white');
 const rgbBtn = document.querySelector('#rgb');
 const darkenBtn = document.querySelector('#darken');
+const lightenBtn = document.querySelector('#lighten');
 const clearBtn = document.querySelector('#clear');
 
 // Grid Size Button
@@ -45,6 +46,7 @@ blackBtn.addEventListener('click', hoverBlack);
 whiteBtn.addEventListener('click', hoverWhite);
 rgbBtn.addEventListener('click', hoverRGB);
 darkenBtn.addEventListener('click', hoverDarken);
+lightenBtn.addEventListener('click', hoverLighten);
 clearBtn.addEventListener('click', clear);
 
 // Grid Item Hover Functions
@@ -52,9 +54,9 @@ function hoverBlack() {
     // add onhover per item
     var gridNodeList = document.querySelectorAll('.grid-item');
     for (let i =0; i < gridNodeList.length; i++) {
-        gridNodeList[i].addEventListener('mouseover', function() {
+        gridNodeList[i].onmouseover = function() {
             this.setAttribute("style", "background-color: rgb( 0, 0, 0)");
-        })
+        }
     }
 }
 
@@ -62,12 +64,12 @@ function hoverRGB() {
     // add onhover per item
     var gridNodeList = document.querySelectorAll('.grid-item');
     for (let i =0; i < gridNodeList.length; i++) {
-        gridNodeList[i].addEventListener('mouseover', function() {
+        gridNodeList[i].onmouseover = function() {
             var R = randNum();
             var G = randNum();
             var B = randNum();
             this.setAttribute("style", "background-color: rgb( " + R + ", " + G + ", " + B + ");");
-        })
+        }
     }
 }
 
@@ -75,9 +77,9 @@ function hoverWhite() {
     // add onhover per item
     var gridNodeList = document.querySelectorAll('.grid-item');
     for (let i =0; i < gridNodeList.length; i++) {
-        gridNodeList[i].addEventListener('mouseover', function() {
+        gridNodeList[i].onmouseover = function() {
             this.setAttribute("style", "background-color: rgb( 255, 255, 255");
-        })
+        }
     }
 }
 
@@ -85,17 +87,33 @@ function hoverDarken() {
     // add onhover per item
     var gridNodeList = document.querySelectorAll('.grid-item');
     for (let i =0; i < gridNodeList.length; i++) {
-        gridNodeList[i].addEventListener('mouseover', function() {
+        gridNodeList[i].onmouseover = function() {
             var style = getComputedStyle(gridNodeList[i]);
             var bg = style['background-color'];
             bg = bg.replace('rgb(',"");
             var rgb = bg.split(',');
-            var r = parseInt(rgb[0])-20;
-            var g = parseInt(rgb[1])-20;
-            var b = parseInt(rgb[2])-20;
-            console.log(r,g,b);
+            var r = parseInt(rgb[0])-26;
+            var g = parseInt(rgb[1])-26;
+            var b = parseInt(rgb[2])-26;
             this.setAttribute("style", "background-color: rgb( " + r + ", " + g + ", " + b + ");");
-        })
+        }
+    }
+}
+
+function hoverLighten() {
+    // add onhover per item
+    var gridNodeList = document.querySelectorAll('.grid-item');
+    for (let i =0; i < gridNodeList.length; i++) {
+        gridNodeList[i].onmouseover = function() {
+            var style = getComputedStyle(gridNodeList[i]);
+            var bg = style['background-color'];
+            bg = bg.replace('rgb(',"");
+            var rgb = bg.split(',');
+            var r = parseInt(rgb[0])+26;
+            var g = parseInt(rgb[1])+26;
+            var b = parseInt(rgb[2])+26;
+            this.setAttribute("style", "background-color: rgb( " + r + ", " + g + ", " + b + ");");
+        }
     }
 }
 
