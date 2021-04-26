@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&family=Indie+Flower&display=swap" rel="stylesheet">
+    
     <!-- FavIcon -->
     <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
 
@@ -15,14 +19,19 @@
     <div id="content-container">
         <header id="title">Etch-a-sketch</header>
         <div id="controls">
-            <button id="size">Change Size</button>
-            <input id="size-input" type="number" min="2" max="64" value="8">
-            <button id="black">Black</button>
-            <button id="white">White</button>
-            <button id="rgb">RGB</button>
-            <button id="darken">Darken</button>
-            <button id="lighten">Lighten</button>
-            <button id="clear">Clear</button>
+            <div id="controls-top">
+                <button id="size">Grid Size:</button>
+                <input id="size-input" type="number" min="2" max="64" value="16">
+                <button id="clear">Clear</button>
+                
+            </div>
+            <div id="controls-bot">
+                <button id="black">Black</button>
+                <button id="white">White</button>
+                <button id="rgb">Colorful</button>
+                <button id="darken">Darken</button>
+                <button id="lighten">Lighten</button>
+            </div>
         </div>
         <div id="grid-container">
                 <div id="grid">

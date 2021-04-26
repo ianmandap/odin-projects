@@ -1,6 +1,6 @@
 window.onload = function() {
-    changeGrid(8);
-    hoverRGB();
+    changeGrid(16);
+    hoverBlack();
 };
 
 // DOM SELECTORS
