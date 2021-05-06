@@ -37,7 +37,8 @@ function changeGrid(num) {
 function createDivs(num) {
     var sq = num*num;
     var divHTML = "";
-    for (let i = 0; i < sq; i++) {divHTML += `<div class="grid-item"></div>`}
+    for (let i = 0; i < sq; i++) {divHTML += `<div class="grid-item" 
+                                                   style="background-color: rgb(255,255,255);"></div>`};
     return divHTML;
 };
 
