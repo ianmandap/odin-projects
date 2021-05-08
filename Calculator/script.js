@@ -18,8 +18,8 @@ function divide(x,y) {
     }
 	let answer = x / y;
     let length = answer.toString(10).length; // add rounding
-    if (length > 14) {
-        return answer.toFixed(14);
+    if (length > overflowValue) {
+        return answer.toFixed(overflowValue);
     } else return answer.toFixed(length);
 }
 
@@ -51,6 +51,7 @@ let ans = 0;
 let valueDisplayed1 = 0;
 let valueDisplayed2 = 0;
 let operatorValue;
+let overflowValue = 14; // max number of characters in display
 
 // DOM Selectors
 const screen = document.querySelector('.screen');
@@ -61,8 +62,25 @@ numbers.forEach(function(item) {
         displayNumber(this.textContent)});
 })
 
+// add keypress event to numbers
+numbers.forEach(function(item) {
+    document.addEventListener('keydown', function(e) {
+        if (e.keyCode == parseInt(item.getAttribute('data-key'))) {
+            displayNumber(item.textContent);
+        }
+    })
+})
+
+// numbers.forEach(function(item) {
+//     item.addEventListener('keydown', function(e) {
+//         console.log(this.getAttribute('data-key'));
+//         if (e.which === this.getAttribute('data-key')); { // char
+//             displayNumber(this.textContent);
+//         }})
+// })
+
 function displayNumber(num) {
-    console.log(valueDisplayed1, valueDisplayed2, ans);
+    if (screen.textContent.length > overflowValue) return; // prevent overflow
     if (screen.textContent == 0 || operatorValue || ans) { //qd
         screen.textContent = num;
     } else {
