@@ -43,7 +43,7 @@ function operator(operatorSign, x, y) {
 let overwriteFlag = 0; // used to flag whether to overwrite display 
 let ans = 0;
 let valueDisplayed1 = 0;
-let valueDisplayed2 = 0;
+let valueDisplayed2;
 let operatorValue; // var to store what operator will be used
 let overflowValue = 13; // max number of characters in display
 let isFirstNumberStored = false;
@@ -68,12 +68,15 @@ numbers.forEach(function(item) {
 
 function displayNumber(num) {
     if (valueDisplayed1.length > overflowValue) return;
-    if (overwriteFlag == 0) { // overwrite display only if flag is 0
+
+    // overwrite display only if flag is 0; else add on to it
+    if (overwriteFlag == 0) { 
         screen.textContent = num;
         overwriteFlag++;
     } else {
         screen.textContent += num;
     };
+    
     // store value in variable
     if (!isFirstNumberStored) {
         valueDisplayed1 = screen.textContent;
@@ -117,15 +120,16 @@ document.addEventListener('keypress', function(e) {
 })
 
 function equals() {
-    if (!operatorValue) return;
+    if (!valueDisplayed2) return; // prevents calc with no input of 2nd number
+    if (!operatorValue) return; // prevents calc with no input of operator
     ans = operator(operatorValue, valueDisplayed1, valueDisplayed2);
-    overwriteFlag = 0; // reset flag
-    screen.textContent = 0; // reset screen
-    valueDisplayed1 = 0; // reset temp var
-    valueDisplayed2 = 0; // reset temp var
-    operatorValue = undefined; // reset operator value
-    isFirstNumberStored = false; // reset flag
+    screen.textContent = ""; // Reset screen to none so display can add on to it
     if (ans !== undefined) displayNumber(ans);
+    valueDisplayed1 = ans; // store answer in first variable
+    isFirstNumberStored = true;
+    valueDisplayed2 = undefined; // reset second var
+    operatorValue = undefined; // reset operator value
+    overwriteFlag = 0; // reset flag
 }
 
 // C. Others: DEL AC . Ans
@@ -159,7 +163,7 @@ function allClear() {
     overwriteFlag = 0;
     ans = 0;
     valueDisplayed1 = 0;
-    valueDisplayed2 = 0;
+    valueDisplayed2 = undefined;
     operatorValue = undefined;
     isFirstNumberStored = false;
 }
