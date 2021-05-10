@@ -45,7 +45,8 @@ let ans = 0;
 let valueDisplayed1 = 0;
 let valueDisplayed2 = 0;
 let operatorValue; // var to store what operator will be used
-let overflowValue = 12; // max number of characters in display
+let overflowValue = 13; // max number of characters in display
+let isFirstNumberStored = false;
 
 // DOM Selectors
 const screen = document.querySelector('.screen');
@@ -66,13 +67,17 @@ numbers.forEach(function(item) {
 })
 
 function displayNumber(num) {
+    if (valueDisplayed1.length > overflowValue) return;
     if (overwriteFlag == 0) { // overwrite display only if flag is 0
         screen.textContent = num;
         overwriteFlag++;
     } else {
         screen.textContent += num;
     };
-    valueDisplayed1 = screen.textContent;
+    // store value in variable
+    if (!isFirstNumberStored) {
+        valueDisplayed1 = screen.textContent;
+    } else valueDisplayed2 = screen.textContent;
 }
 
 // B. Operators + - * / =
@@ -89,7 +94,7 @@ operatorButtons.forEach(function(item) {
         if (operatorValue) {equals()};
         overwriteFlag = 0; // reset flag
         operatorValue = item.getAttribute('id'); // Add operator value
-        valueDisplayed2 = valueDisplayed1; // store first number in another variable
+        isFirstNumberStored = true;
     })
     // add keypress event to operators
     document.addEventListener('keypress', function(e) {
@@ -98,7 +103,7 @@ operatorButtons.forEach(function(item) {
             if (operatorValue) {equals()};
             overwriteFlag = 0; // reset flag
             operatorValue = item.getAttribute('id'); // Add operator value
-            valueDisplayed2 = valueDisplayed1; // store first number in another variable
+            isFirstNumberStored = true;
         }
     })
 });
@@ -113,13 +118,14 @@ document.addEventListener('keypress', function(e) {
 
 function equals() {
     if (!operatorValue) return;
-    ans = operator(operatorValue, valueDisplayed2, valueDisplayed1); // valueDisplayed2 is 'x'
+    ans = operator(operatorValue, valueDisplayed1, valueDisplayed2);
     overwriteFlag = 0; // reset flag
     screen.textContent = 0; // reset screen
     valueDisplayed1 = 0; // reset temp var
     valueDisplayed2 = 0; // reset temp var
     operatorValue = undefined; // reset operator value
-    if (ans !== undefined) displayNumber(ans); // qd
+    isFirstNumberStored = false; // reset flag
+    if (ans !== undefined) displayNumber(ans);
 }
 
 // C. Others: DEL AC . Ans
@@ -155,6 +161,7 @@ function allClear() {
     valueDisplayed1 = 0;
     valueDisplayed2 = 0;
     operatorValue = undefined;
+    isFirstNumberStored = false;
 }
 
 // iii. . (Decimal)
