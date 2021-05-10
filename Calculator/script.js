@@ -1,6 +1,6 @@
 // Operator functions
 function add(x,y) {
-    return parseInt(x)+parseInt(y);
+    return x+y;
 }
 
 function subtract(x,y) {
@@ -33,6 +33,8 @@ function factorial(x) {
 }
 
 function operator(operatorSign, x, y) {
+    x = parseFloat(x);
+    y = parseFloat(y);
     let tempFunction = window[operatorSign]; // access function using its string name from the current window
     return tempFunction(x,y); // properly returns result of operation
 }
@@ -43,7 +45,7 @@ let ans = 0;
 let valueDisplayed1 = 0;
 let valueDisplayed2 = 0;
 let operatorValue; // var to store what operator will be used
-let overflowValue = 14; // max number of characters in display
+let overflowValue = 12; // max number of characters in display
 
 // DOM Selectors
 const screen = document.querySelector('.screen');
@@ -63,7 +65,6 @@ numbers.forEach(function(item) {
 })
 
 function displayNumber(num) {
-    if (screen.textContent.length > overflowValue) return; // prevent overflow
     if (overwriteFlag == 0) { // overwrite display only if flag is 0
         screen.textContent = num;
         overwriteFlag++;
@@ -101,11 +102,12 @@ document.addEventListener('keypress', function(e) {
 function equals() {
     if (!operatorValue) return;
     ans = operator(operatorValue, valueDisplayed2, valueDisplayed1); // valueDisplayed2 is 'x'
-    screen.textContent = ""; // reset screen
+    overwriteFlag = 0; // reset flag
+    screen.textContent = 0; // reset screen
     valueDisplayed1 = 0; // reset temp var
     valueDisplayed2 = 0; // reset temp var
     operatorValue = undefined; // reset operator value
-    displayNumber(ans); // qd
+    if (ans !== undefined) displayNumber(ans); // qd
 }
 
 // C. Others: DEL AC . EXP Ans
