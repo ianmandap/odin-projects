@@ -32,52 +32,34 @@ function factorial(x) {
 	return x * factorial(x-1);
 }
 
-// Helper functions
 function operator(operatorSign, x, y) {
     let tempFunction = window[operatorSign]; // access function using its string name from the current window
     return tempFunction(x,y); // properly returns result of operation
-}
-
-function clearAll() {
-    ans = 0;
-    valueDisplayed1 = 0;
-    valueDisplayed2 = 0;
-    operatorValue = undefined;
-
 }
 
 // Global variables
 let ans = 0;
 let valueDisplayed1 = 0;
 let valueDisplayed2 = 0;
-let operatorValue;
+let operatorValue; // var to store what operator will be used
 let overflowValue = 14; // max number of characters in display
 
 // DOM Selectors
 const screen = document.querySelector('.screen');
 const numbers = [...document.querySelectorAll('.number')]; // Array of the number buttons
 
+// A. Numbers
 numbers.forEach(function(item) {
+    // add click event to numbers
     item.addEventListener('click', function() {
         displayNumber(this.textContent)});
-})
-
-// add keypress event to numbers
-numbers.forEach(function(item) {
+    // add keypress event to window based on the numbers
     document.addEventListener('keydown', function(e) {
         if (e.keyCode == parseInt(item.getAttribute('data-key'))) {
             displayNumber(item.textContent);
         }
-    })
+    })   
 })
-
-// numbers.forEach(function(item) {
-//     item.addEventListener('keydown', function(e) {
-//         console.log(this.getAttribute('data-key'));
-//         if (e.which === this.getAttribute('data-key')); { // char
-//             displayNumber(this.textContent);
-//         }})
-// })
 
 function displayNumber(num) {
     if (screen.textContent.length > overflowValue) return; // prevent overflow
@@ -89,7 +71,42 @@ function displayNumber(num) {
     valueDisplayed1 = screen.textContent;
 }
 
-// Delete Button
+// B. Operators + - * / =
+const operatorButtons = [...document.querySelectorAll('.operator')]; // array list of 4 operator buttons
+const addBtn = document.querySelector('#add');
+const subtractBtn = document.querySelector('#subtract');
+const multiplyBtn = document.querySelector('#multiply');
+const divideBtn = document.querySelector('#divide');
+const equalsBtn = document.querySelector('#equals');
+
+operatorButtons.forEach(function(item) {
+    // add click event to operators
+    item.addEventListener('click', function() {
+        if (operatorValue) {equals()};
+        operatorValue = item.getAttribute('id'); // Add operator value
+        valueDisplayed2 = valueDisplayed1; // store first number in another variable
+    })
+});
+
+equalsBtn.addEventListener('click', equals);
+document.addEventListener('keypress', function(e) {
+    if (e.keyCode == equalsBtn.getAttribute('data-key')) {
+        equals();
+    }
+})
+
+function equals() {
+    if (!operatorValue) return;
+    ans = operator(operatorValue, valueDisplayed2, valueDisplayed1); // valueDisplayed2 is 'x'
+    screen.textContent = ""; // reset screen
+    valueDisplayed1 = 0; // reset temp var
+    valueDisplayed2 = 0; // reset temp var
+    operatorValue = undefined; // reset operator value
+    displayNumber(ans); // qd
+}
+
+// C. Others: DEL AC . EXP Ans
+// i. DEL
 const deleteBtn = document.querySelector('#delete');
 deleteBtn.addEventListener('click', deleteANumber);
 
@@ -97,7 +114,7 @@ function deleteANumber() {
     screen.textContent = screen.textContent.slice(0,-1);
 }
 
-// AllClear Button
+// ii. AC
 const allClearBtn = document.querySelector('#allClear');
 allClearBtn.addEventListener('click', allClear);
 
@@ -109,30 +126,10 @@ function allClear() {
     operatorValue = undefined;
 }
 
-// Operator Buttons
-const operatorButtons = [...document.querySelectorAll('.operator')]; // array list of 4 operator buttons
-const addBtn = document.querySelector('#add');
-const subtractBtn = document.querySelector('#subtract');
-const multiplyBtn = document.querySelector('#multiply');
-const divideBtn = document.querySelector('#divide');
-const equalsBtn = document.querySelector('#equals');
+// iii. .
 
-operatorButtons.forEach(function(item) {
-    item.addEventListener('click', function() {
-        if (operatorValue) {equals()};
-        operatorValue = item.getAttribute('id'); // Add operator value
-        valueDisplayed2 = valueDisplayed1; // store first number in another variable
-    })
-})
 
-equalsBtn.addEventListener('click', equals);
+/// iv. EXP
 
-function equals() {
-    if (!operatorValue) return;
-    ans = operator(operatorValue, valueDisplayed2, valueDisplayed1); // valueDisplayed2 is 'x'
-    screen.textContent = ""; // reset screen
-    valueDisplayed1 = 0; // reset temp var
-    valueDisplayed2 = 0; // reset temp var
-    operatorValue = undefined; // reset operator value
-    displayNumber(ans); // qd
-}
+
+/// v. Ans
