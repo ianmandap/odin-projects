@@ -38,6 +38,7 @@ function operator(operatorSign, x, y) {
 }
 
 // Global variables
+let overwriteFlag = 0; // used to flag whether to overwrite display 
 let ans = 0;
 let valueDisplayed1 = 0;
 let valueDisplayed2 = 0;
@@ -63,8 +64,9 @@ numbers.forEach(function(item) {
 
 function displayNumber(num) {
     if (screen.textContent.length > overflowValue) return; // prevent overflow
-    if (screen.textContent == 0 || operatorValue || ans) { //qd
+    if (overwriteFlag == 0) { // overwrite display only if flag is 0
         screen.textContent = num;
+        overwriteFlag++;
     } else {
         screen.textContent += num;
     };
@@ -83,6 +85,7 @@ operatorButtons.forEach(function(item) {
     // add click event to operators
     item.addEventListener('click', function() {
         if (operatorValue) {equals()};
+        overwriteFlag = 0; // reset flag
         operatorValue = item.getAttribute('id'); // Add operator value
         valueDisplayed2 = valueDisplayed1; // store first number in another variable
     })
@@ -112,6 +115,7 @@ deleteBtn.addEventListener('click', deleteANumber);
 
 function deleteANumber() {
     screen.textContent = screen.textContent.slice(0,-1);
+    valueDisplayed1 = screen.textContent;
 }
 
 // ii. AC
@@ -120,6 +124,7 @@ allClearBtn.addEventListener('click', allClear);
 
 function allClear() {
     screen.textContent = 0;
+    overwriteFlag = 0;
     ans = 0;
     valueDisplayed1 = 0;
     valueDisplayed2 = 0;
