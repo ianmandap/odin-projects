@@ -58,7 +58,8 @@ numbers.forEach(function(item) {
         displayNumber(this.textContent)});
     // add keypress event to window based on the numbers
     document.addEventListener('keydown', function(e) {
-        if (e.keyCode == parseInt(item.getAttribute('data-key'))) {
+        if (e.key == item.textContent) {
+            item.focus(); // applies focus-visible pseudoclass
             displayNumber(item.textContent);
         }
     })   
@@ -90,11 +91,22 @@ operatorButtons.forEach(function(item) {
         operatorValue = item.getAttribute('id'); // Add operator value
         valueDisplayed2 = valueDisplayed1; // store first number in another variable
     })
+    // add keypress event to operators
+    document.addEventListener('keypress', function(e) {
+        if (e.key == item.value || e.key == item.textContent) {
+            item.focus();
+            if (operatorValue) {equals()};
+            overwriteFlag = 0; // reset flag
+            operatorValue = item.getAttribute('id'); // Add operator value
+            valueDisplayed2 = valueDisplayed1; // store first number in another variable
+        }
+    })
 });
 
 equalsBtn.addEventListener('click', equals);
 document.addEventListener('keypress', function(e) {
-    if (e.keyCode == equalsBtn.getAttribute('data-key')) {
+    if (e.key == equalsBtn.textContent) {
+        equalsBtn.focus();
         equals();
     }
 })
@@ -110,10 +122,16 @@ function equals() {
     if (ans !== undefined) displayNumber(ans); // qd
 }
 
-// C. Others: DEL AC . EXP Ans
+// C. Others: DEL AC . Ans
 // i. DEL
 const deleteBtn = document.querySelector('#delete');
 deleteBtn.addEventListener('click', deleteANumber);
+document.addEventListener('keydown', function(e) {
+    if (e.key == "Backspace") {
+        deleteBtn.focus(); // applies focus-visible pseudoclass
+        deleteANumber();
+    }
+})
 
 function deleteANumber() {
     screen.textContent = screen.textContent.slice(0,-1);
@@ -123,6 +141,12 @@ function deleteANumber() {
 // ii. AC
 const allClearBtn = document.querySelector('#allClear');
 allClearBtn.addEventListener('click', allClear);
+document.addEventListener('keydown', function(e) {
+    if (e.key == "Escape") {
+        allClearBtn.focus(); // applies focus-visible pseudoclass
+        allClear();
+    }
+})
 
 function allClear() {
     screen.textContent = 0;
@@ -133,10 +157,21 @@ function allClear() {
     operatorValue = undefined;
 }
 
-// iii. .
+// iii. . (Decimal)
+const decimalBtn = document.querySelector('.decimal');
+decimalBtn.addEventListener('click', decimalPoint);
+document.addEventListener('keydown', function(e) {
+    if (e.key == decimalBtn.textContent) {
+        decimalBtn.focus(); // applies focus-visible pseudoclass
+        decimalPoint();
+    }
+})
 
+function decimalPoint() {
+    if (!screen.textContent.includes(".")) {
+        displayNumber(".");
+    }
+    return;
+}
 
-/// iv. EXP
-
-
-/// v. Ans
+/// iv. Ans

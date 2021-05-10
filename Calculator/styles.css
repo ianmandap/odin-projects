@@ -68,6 +68,13 @@ html {
       background-color: initial;
     }
 
+    button:focus-visible {
+      outline: 2px solid transparent;
+      border: 2px solid goldenrod;
+      opacity: 1;
+      background-color: initial;
+    }
+
     .letter {
       font-size: 0.75rem;
     }
