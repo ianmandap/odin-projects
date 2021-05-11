@@ -126,14 +126,14 @@ function equals() {
     ans = operator(operatorValue, valueDisplayed1, valueDisplayed2);
     screen.textContent = ""; // Reset screen to none so display can add on to it
     if (ans !== undefined) displayNumber(ans);
-    valueDisplayed1 = ans; // store answer in first variable
-    isFirstNumberStored = true;
+    valueDisplayed1 = ans; // store answer in first variable to allow continued equation after
+    isFirstNumberStored = false; // reset variable to allow fresh equation to be input
     valueDisplayed2 = undefined; // reset second var
     operatorValue = undefined; // reset operator value
     overwriteFlag = 0; // reset flag
 }
 
-// C. Others: DEL AC .
+// C. Others: DEL AC . %
 // i. DEL
 const deleteBtn = document.querySelector('#delete');
 deleteBtn.addEventListener('click', deleteANumber);
@@ -186,4 +186,33 @@ function decimalPoint() {
         } else displayNumber(".");
     }
     return;
+}
+
+// iv. Percent %
+const percentBtn = document.querySelector('#percent');
+percentBtn.addEventListener('click', percentage);
+document.addEventListener('keydown', function(e) {
+    if (e.key == percentBtn.textContent) {
+        percentBtn.focus(); // applies focus-visible pseudoclass
+        percentage();
+    }
+})
+
+function percentage() {
+    // display percent in display
+    if (!screen.textContent.includes('%')) {
+        displayNumber('%');
+        overwriteFlag = 0; // prevent additional characters
+    }
+
+    // simulate divison by 100
+    if (isFirstNumberStored == false) { // transform 1st value to equivalent
+        valueDisplayed1 = parseFloat(valueDisplayed1) / 100;
+        overwriteflag = 0;
+        operatorValue = 'divide';
+        isFirstNumberStored = true;
+        valueDisplayed2 = 1;
+    } else {
+        valueDisplayed2 = parseFloat(valueDisplayed2) / 100; // transform 2nd value to equivalent
+    }
 }

@@ -54,7 +54,7 @@ html {
 
   /* BUTTONS */
   .button-container {
-    height: 75%;
+    height: 85%;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(4, 1fr);
@@ -93,10 +93,7 @@ html {
       font-size: 0.75rem;
     }
 
-    #add {
-      grid-row: span 2;
-    }
-
+    /* Additional Buttons: Abandoned 
     .other-buttons-container {
       font-size: 0.45rem;
       height: 10%;
@@ -110,7 +107,7 @@ html {
     .other-buttons-container button {
       padding: 3px;
       width: 12.5%;
-    }
+    } */
 
 @media screen and (max-width: 600px) {
   html {
