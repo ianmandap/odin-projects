@@ -34,7 +34,8 @@ html {
 }
 
   .screen {
-    height: 20%;
+    min-height: 20%;
+    word-wrap: break-word;
     text-align: right;
     padding: 20px;
     border: var(--border);
@@ -77,4 +78,8 @@ html {
 
     .letter {
       font-size: 0.75rem;
+    }
+
+    #add {
+      grid-row: span 2;
     }

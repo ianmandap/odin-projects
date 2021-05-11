@@ -67,7 +67,7 @@ numbers.forEach(function(item) {
 })
 
 function displayNumber(num) {
-    if (valueDisplayed1.length > overflowValue) return;
+    // if (valueDisplayed1.length > overflowValue) return;
 
     // overwrite display only if flag is 0; else add on to it
     if (overwriteFlag == 0) { 
@@ -132,7 +132,7 @@ function equals() {
     overwriteFlag = 0; // reset flag
 }
 
-// C. Others: DEL AC . Ans
+// C. Others: DEL AC .
 // i. DEL
 const deleteBtn = document.querySelector('#delete');
 deleteBtn.addEventListener('click', deleteANumber);
@@ -180,9 +180,9 @@ document.addEventListener('keydown', function(e) {
 
 function decimalPoint() {
     if (!screen.textContent.includes(".")) {
-        displayNumber(".");
+        if (overwriteFlag == 0) {
+            displayNumber("0.");
+        } else displayNumber(".");
     }
     return;
 }
-
-/// iv. Ans
