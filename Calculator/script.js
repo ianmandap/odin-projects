@@ -16,11 +16,11 @@ function divide(x,y) {
         alert("Cannot divide by 0.");
         return;
     }
-	let answer = x / y;
-    let length = answer.toString(10).length; // add rounding
-    if (length > overflowValue) {
-        return answer.toFixed(overflowValue);
-    } else return answer.toFixed(length);
+	return x / y; // answer = x / y;
+    // let length = answer.toString(10).length; // add rounding
+    // if (length > overflowValue) {
+    //     return answer.toFixed(overflowValue);
+    // } else return answer.toFixed(length);
 }
 
 function power(x,y) {
@@ -45,7 +45,7 @@ let ans = 0;
 let valueDisplayed1 = 0;
 let valueDisplayed2;
 let operatorValue; // var to store what operator will be used
-let overflowValue = 13; // max number of characters in display
+let overflowValue = 14; // max number of characters in display
 let isFirstNumberStored = false;
 
 // DOM Selectors
@@ -67,15 +67,25 @@ numbers.forEach(function(item) {
 })
 
 function displayNumber(num) {
-    // if (valueDisplayed1.length > overflowValue) return;
-
-    // overwrite display only if flag is 0; else add on to it
+    // overwrite display only if flag is 0; 
+    // else check if infinity and return infinity
+    // else concat on to it
     if (overwriteFlag == 0) { 
         screen.textContent = num;
         overwriteFlag++;
-    } else {
-        screen.textContent += num;
-    };
+    } else if (screen.textContent.includes("Infinity")) {
+        screen.textContent = "Infinity";
+    }
+    // } else if (screen.textContent.includes("e-")) {
+    //     screen.textContent = "0";
+    // } else if (screen.textContent.includes("e+")) { 
+    //     screen.textContent = screen.textContent * 10;
+    else screen.textContent += num;
+
+    // convert big numbers to exponential to fit the display
+    if (screen.textContent.length >= overflowValue) {
+        screen.textContent = Number(screen.textContent).toExponential(overflowValue - 6);
+    }
     
     // store value in variable
     if (!isFirstNumberStored) {
