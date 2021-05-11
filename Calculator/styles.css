@@ -9,19 +9,28 @@
   }
 
 :root {
+  --main-color: black;
   --border: 10px solid black;
+  --button-background: white;
+  --button-hover-bg: lightgrey;
+  --button-focus-bg: goldenrod;
+  --screen-bg: white;
 }
 
 html {
-    font-size: 50px;
+    font-size: 46px;
     height: 100%;
     width: 100%;
     font-family: "Questrial", sans-serif;
+    /* Photo by Johny Goerend on Unsplash */
+    background-image: url(assets/Unsplash/johny-goerend-Oz2ZQ2j8We8-unsplash\ \(1\).jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 /* MAIN CONTENT */
 .calculator-container {
-  height: 600px;
+  height: 650px;
   width: 500px;
   margin: 0;
   position: absolute;
@@ -29,51 +38,55 @@ html {
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  border: 10px solid red;
+  background-color: var(--main-color);
+  border: 20px solid var(--main-color);
   border-radius: 2.5%;
 }
 
   .screen {
-    min-height: 20%;
+    height: 12.5%;
     word-wrap: break-word;
     text-align: right;
-    padding: 20px;
-    border: var(--border);
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: var(--screen-bg);
   }
 
   /* BUTTONS */
   .button-container {
-    height: 80%;
+    height: 75%;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    column-gap: 6px;
+    row-gap: 6px;
     border: var(--border);
+    background-color: var(--main-color);
   }
 
     button {
       font-family: inherit;
       font-size: inherit;
-      padding: 10px;
-      border: 1px solid green;
+      padding: 8px;
       cursor: pointer;
+      background-color: var(--button-background);
     }
 
     button:hover {
       opacity: 0.75;
-      background-color: lightgrey;
+      background-color: var(--button-hover-bg);
     }
 
     button:focus {
-      border: 2px solid goldenrod;
+      border: 4px solid var(--button-focus-bg);
+      padding: 4px;
       opacity: 1;
-      background-color: initial;
     }
 
     button:focus-visible {
-      outline: 2px solid transparent;
-      border: 2px solid goldenrod;
+      outline: 4px solid transparent;
+      border: 4px solid var(--button-focus-bg);
       opacity: 1;
-      background-color: initial;
     }
 
     .letter {
@@ -83,3 +96,24 @@ html {
     #add {
       grid-row: span 2;
     }
+
+    .other-buttons-container {
+      font-size: 0.45rem;
+      height: 10%;
+      display: flex;
+      justify-content: space-around;
+      border-top: var(--border);
+      border-left: var(--border);
+      border-right: var(--border);
+    }
+
+    .other-buttons-container button {
+      padding: 3px;
+      width: 12.5%;
+    }
+
+@media screen and (max-width: 600px) {
+  html {
+    background-image: url(assets/Unsplash/johny-goerend-Oz2ZQ2j8We8-unsplash.jpg);
+  }
+}
