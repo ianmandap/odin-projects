@@ -16,11 +16,7 @@ function divide(x,y) {
         alert("Cannot divide by 0.");
         return;
     }
-	return x / y; // answer = x / y;
-    // let length = answer.toString(10).length; // add rounding
-    // if (length > overflowValue) {
-    //     return answer.toFixed(overflowValue);
-    // } else return answer.toFixed(length);
+	return x / y;
 }
 
 function power(x,y) {
@@ -75,12 +71,7 @@ function displayNumber(num) {
         overwriteFlag++;
     } else if (screen.textContent.includes("Infinity")) {
         screen.textContent = "Infinity";
-    }
-    // } else if (screen.textContent.includes("e-")) {
-    //     screen.textContent = "0";
-    // } else if (screen.textContent.includes("e+")) { 
-    //     screen.textContent = screen.textContent * 10;
-    else screen.textContent += num;
+    } else screen.textContent += num;
 
     // convert big numbers to exponential to fit the display
     if (screen.textContent.length >= overflowValue) {
