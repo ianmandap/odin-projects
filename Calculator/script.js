@@ -19,14 +19,15 @@ function divide(x,y) {
 	return x / y;
 }
 
-function power(x,y) {
-	return x ** y;
-}
+// Unused functions
+// function power(x,y) {
+// 	return x ** y;
+// }
 
-function factorial(x) {
-	if (x === 0) {return 1}
-	return x * factorial(x-1);
-}
+// function factorial(x) {
+// 	if (x === 0) {return 1}
+// 	return x * factorial(x-1);
+// }
 
 function operator(operatorSign, x, y) {
     x = parseFloat(x);

@@ -9,8 +9,8 @@
   }
 
 :root {
-  --main-color: black;
-  --border: 10px solid black;
+  --main-color: #122948;
+  --border: 10px solid #122948;
   --button-background: white;
   --button-hover-bg: lightgrey;
   --button-focus-bg: goldenrod;
@@ -58,8 +58,8 @@ html {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(4, 1fr);
-    column-gap: 6px;
-    row-gap: 6px;
+    column-gap: 0.2rem;
+    row-gap: 0.2rem;
     border: var(--border);
     background-color: var(--main-color);
   }
@@ -90,7 +90,7 @@ html {
     }
 
     .letter {
-      font-size: 0.75rem;
+      font-size: 0.70rem;
     }
 
     /* Additional Buttons: Abandoned 
@@ -109,8 +109,33 @@ html {
       width: 12.5%;
     } */
 
+/* IPads */
+@media screen and (min-height: 1000px) {
+  html {
+    font-size: 55px;
+  }
+
+  .calculator-container {
+    width: 70vw;
+    height: 75vh;
+  }
+}
+
+/* Phones */
 @media screen and (max-width: 600px) {
+  
   html {
     background-image: url(assets/Unsplash/johny-goerend-Oz2ZQ2j8We8-unsplash.jpg);
+    font-size: 30px;
+  }
+
+  .calculator-container {
+    border: 10px solid var(--main-color);
+    width: 95vw;
+    height: 70vh;
+  }
+
+  .button-container {
+    border: 5px solid var(--main-color);
   }
 }
