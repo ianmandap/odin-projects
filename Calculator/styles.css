@@ -12,7 +12,7 @@
   --main-color: #122948;
   --border: 10px solid #122948;
   --button-background: white;
-  --button-hover-bg: lightgrey;
+  --button-hover-bg: lightblue;
   --button-focus-bg: goldenrod;
   --screen-bg: white;
 }
@@ -90,7 +90,9 @@ html {
     }
 
     .letter {
-      font-size: 0.70rem;
+      font-size: 0.65rem;
+      color:white;
+      background-color: steelblue;
     }
 
     /* Additional Buttons: Abandoned 
