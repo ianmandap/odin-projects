@@ -146,6 +146,13 @@ document.addEventListener('keydown', function(e) {
 })
 
 function deleteANumber() {
+    // delete % if any
+    if (screen.textContent.includes("%")) { // if containts %, reset variables that percentage() set
+        overwriteFlag = 1;
+        operatorValue = undefined;
+        isFirstNumberStored = false;
+        valueDisplayed2 = undefined;
+    }
     screen.textContent = screen.textContent.slice(0,-1);
     valueDisplayed1 = screen.textContent;
 }
