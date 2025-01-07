@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 def caesar_cipher(string, num)
   # Takes in a string and shift factor (num) to output a modified string
-  string.split('').reduce([]) { |arr, char|
+  string.split('').reduce([]) do |arr, char|
     char_code = char.ord
 
     if char_code.between?(65, 90)
@@ -18,10 +20,10 @@ def caesar_cipher(string, num)
     end
 
     arr << char_code.chr
-  }.join('')
+  end.join('')
 end
 
-p caesar_cipher("What a string!", 5) #=> "Bmfy f xywnsl!"
-p caesar_cipher("Bmfy f xywnsl!", -5)
+p caesar_cipher('What a string!', 5) #=> "Bmfy f xywnsl!"
+p caesar_cipher('Bmfy f xywnsl!', -5)
 p caesar_cipher('Hello, World!', 75)
 p caesar_cipher('Hello, World!', -55)

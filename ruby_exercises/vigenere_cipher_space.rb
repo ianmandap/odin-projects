@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 def vig_cipher_encrypt(plaintext, key)
   plaintext.upcase!
   key.upcase!
