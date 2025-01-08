@@ -1,3 +1,13 @@
+## Learnings
+Ruby does not have this data structure supported. Here, I implemented a `LinkedList` class in Ruby following the Assignment metric. 
+
+**Linked Lists**
+- are linear collections of data elements called nodes that "point" to the next node by means of a pointer
+- each node holds a single element of data and a pointer to the next node in the list.
+- parts: **head node** is the first node; **tail node** is the last node
+- e.g. `[ NODE(head) ] -> [ NODE ] -> [ NODE(tail) ] -> nil`
+
+```
 ### Assignment
 
 You will need two classes:
@@ -48,3 +58,4 @@ Let's test out the Linked List you made!
 1. Add `puts list` to the end of the file and run it. Because of the naming, this should use the `#to_s` method you wrote earlier.
 
 1. If everything is working, the output should be `( dog ) -> ( cat ) -> ( parrot ) -> ( hamster ) -> ( snake ) -> ( turtle ) -> nil`. Feel free to use different values to test if you like.
+```
