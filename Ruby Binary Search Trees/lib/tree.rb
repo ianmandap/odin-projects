@@ -68,12 +68,12 @@ class Tree
   def level_order(node = root)
     return if node.nil?
 
-    arr = [node.data]
+    block_given? ? (yield node.data) : (arr = [node.data])
     queue = [node.left, node.right].compact
 
     until queue.empty?
       n = queue.shift
-      arr << n.data
+      block_given? ? (yield n.data) : (arr << n.data)
       queue << n.left unless n.left.nil?
       queue << n.right unless n.right.nil?
     end
@@ -82,34 +82,34 @@ class Tree
   end
 
   # root-left-right
-  def preorder(node = root, result = [])
+  def preorder(node = root, result = [], &block)
     return if node.nil?
 
-    result << node.data
-    preorder(node.left, result)
-    preorder(node.right, result)
+    block_given? ? (yield node.data) : (result << node.data)
+    preorder(node.left, result, &block)
+    preorder(node.right, result, &block)
 
     result
   end
 
   # left-root-right
-  def inorder(node = root, result = [])
+  def inorder(node = root, result = [], &block)
     return if node.nil?
 
-    inorder(node.left, result)
-    result << node.data
-    inorder(node.right, result)
+    inorder(node.left, result, &block)
+    block_given? ? (yield node.data) : (result << node.data)
+    inorder(node.right, result, &block)
 
     result
   end
 
   # left-right-root
-  def postorder(node = root, result = [])
+  def postorder(node = root, result = [], &block)
     return if node.nil?
 
-    postorder(node.left, result)
-    postorder(node.right, result)
-    result << node.data
+    postorder(node.left, result, &block)
+    postorder(node.right, result, &block)
+    block_given? ? (yield node.data) : (result << node.data)
 
     result
   end
@@ -137,3 +137,4 @@ class Tree
     current
   end
 end
+
