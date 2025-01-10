@@ -1,5 +1,5 @@
 ## Learnings
-Ruby does not have this data structure supported. Here, I implemented a `LinkedList` class in Ruby following the Assignment metric. 
+Ruby does not have this data structure supported. Here, I implemented a `LinkedList` class in Ruby following the Assignment metric using Test Driven Development (RSpecs) 
 
 **Linked Lists**
 - are linear collections of data elements called nodes that "point" to the next node by means of a pointer

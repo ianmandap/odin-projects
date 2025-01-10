@@ -1,8 +1,18 @@
 ## Learnings
-- Balanced Binary Search Trees (BST)
+Here, I implemented a `Tree` class in Ruby following the Assignment metric using Test Driven Development (RSpecs). 
 
-- (Capturing multi-line console output in Ruby's RSpec testing interface)[https://blog.petefowler.dev/capturing-multi-line-console-output-in-rubys-rspec-testing-interface]
+**Balanced Binary Search Trees (BST)**
+- a binary tree in which height of left and right subtree of any node differ by not more than 1
+- performance-wise good as they provide `O log(n)` time for search, insert and delete
+- created from a sorted array
+
+**[Capturing multi-line console output in Ruby's RSpec testing interface](https://blog.petefowler.dev/capturing-multi-line-console-output-in-rubys-rspec-testing-interface)**
 - `Tree#pretty_print` outputs a tree structure to the console. To streamline RSpec testing, we assign `$stdout` to a `StringIO` object so any output is captured. We can then use `$stdout.rewind` and sequentially use `$stdout.gets` to check line by line against expected output.
+- since reassigning `$stdout = StringIO` pollutes the global namespace, an `after(:each) { $stdout = STDOUT }` was put to restore test defaults. This allows the normal use of `byebug` and `puts` operations without their print execution going into `StringIO`.
+
+**Blocks and `yield`**
+- Implementation requirements for `#level_order`, `#preorder`, `#inorder`, and `#postorder` methods required for the traversed nodes to be yielded to a block, if provided, and to return an array of values if not provided. 
+- In method definitions, if put as the last argument, I learned the keyword `&` explicitly captures blocks and can then be yielded onto inside the method body. This allows for more flexible and powerful use as exemplified by the `#balanced?` method
 
 ```
 ### Assignment
