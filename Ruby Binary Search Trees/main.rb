@@ -5,30 +5,33 @@ require_relative 'lib/tree'
 # Create a binary search tree from an array of random numbers
 arr = (Array.new(15) { rand(1..100) })
 tree = Tree.new(arr)
-puts tree.pretty_print
 
 # Confirm that the tree is balanced by calling #balanced?
-puts tree.balanced?
+p tree.balanced?
 
 # Print out all elements in level, pre, post, and in order
-puts tree.level_order
-puts tree.preorder
-puts tree.inorder
-puts tree.postorder
+p tree.level_order.map(&:data)
+p tree.preorder.map(&:data)
+p tree.inorder.map(&:data)
+p tree.postorder.map(&:data)
 
 # Unbalance the tree by adding several numbers > 100
+tree.insert(101)
+tree.insert(102)
+tree.insert(103)
+tree.insert(104)
 
 # Confirm that the tree is unbalanced by calling #balanced?
-puts tree.balanced?
+p tree.balanced?
 
 # Balance the tree by calling #rebalance
-puts tree.rebalance
+p tree.rebalance
 
 # Confirm that the tree is balanced by calling #balanced?
-puts tree.balanced?
+p tree.balanced?
 
 # Print out all elements in level, pre, post, and in order.
-puts tree.level_order
-puts tree.preorder
-puts tree.inorder
-puts tree.postorder
+p tree.level_order.map(&:data)
+p tree.preorder.map(&:data)
+p tree.inorder.map(&:data)
+p tree.postorder.map(&:data)
